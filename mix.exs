@@ -1,4 +1,4 @@
-defmodule Scene.Mixfile do
+defmodule Scene.Library.Mixfile do
   use Mix.Project
 
   def project do

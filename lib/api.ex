@@ -250,7 +250,48 @@ defmodule Scene.Api do
   """
   @spec add_device(Caller.t, uuid, uuid, non_neg_integer, non_neg_integer) :: :ok | {:error, code, reason}
   def add_device(caller, sid, did, x, y) do
-    remote_call(:device, [caller, sid, did, x, y])
+    remote_call(:add_device, [caller, sid, did, x, y])
+  end
+
+  @doc """
+  从场景图中修改设备
+
+  ## 参数
+  |arg|type|meaning|
+  |---|----|-------|
+  |caller|Caller|调用者|
+  |sid|uuid|场景图 ID|
+  |did|uuid|设备 ID|
+  |x|int|设备在场景图中的 x 坐标|
+  |y|int|设备在场景图中的 y 坐标|
+
+  ## 结果
+
+  ### 成功
+
+  ```elixir
+  :ok
+  ```
+
+  ### 失败
+
+  ```elixir
+  {:error, code, reason}
+  ```
+
+  |code|reason|
+  |----|------|
+  |403|非法域访问|
+  |404|场景图不存在|
+  |444|设备不存在|
+  |500|服务内部错误|
+
+  since: 0.1.0
+
+  """
+  @spec modify_device(Caller.t, uuid, uuid, non_neg_integer, non_neg_integer) :: :ok | {:error, code, reason}
+  def modify_device(caller, sid, did, x, y) do
+    remote_call(:modify_device, [caller, sid, did, x, y])
   end
 
   @doc """
@@ -288,7 +329,7 @@ defmodule Scene.Api do
   """
   @spec remove_device(Caller.t, uuid, uuid) :: :ok | {:error, code, reason}
   def remove_device(caller, sid, did) do
-    remote_call(:device, [caller, sid, did])
+    remote_call(:remove_device, [caller, sid, did])
   end
 
   @spec remote_call(atom, [integer | String.t]) :: :ok | {:ok, Entity.t} | {:ok, [Entity.t]} | {:error, code, reason}
