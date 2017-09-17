@@ -17,7 +17,7 @@ defmodule Scene.Library.Mixfile do
   defp deps do
     [
       {:resource_discovery, git: "https://github.com/titan/resource_discovery.git", branch: "master"},
-      {:domainlib, git: "git@github.com:titan/triot-domain-library.git", branch: "master" },
+      {:domainlib, git: "https://github.com/titan/triot-domain-library.git", branch: "master" },
       {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
